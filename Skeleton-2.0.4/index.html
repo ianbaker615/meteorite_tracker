@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Meteorite Tracker</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+  <!-- Javascript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- JS for page
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript">
+    fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
+    .then(res => res.json())//response type
+    .then(json => {
+      //render DataTable
+      $(document).ready( function () {
+        $('#meteoriteData').DataTable();
+      });
+      //fill out table w data
+      var table = document.getElementById('meteoriteData')
+
+      json.forEach(function(object){
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + object.name + '</td>' +
+        '<td>' + object.id + '</td>' +
+        '<td>' + object.nametype + '</td>' +
+        '<td>' + object.recclass + '</td>' +
+        '<td>' + object.mass + '</td>' +
+        '<td>' + object.fall + '</td>' +
+        '<td>' + object.year + '</td>' +
+        '<td>' + object.geolocation.latitude + '</td>' +
+        '<td>' + object.geolocation.longitude + '</td>';
+        $('table tbody').append(tr);
+      });
+    });
+  </script>
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <table class="display" id="meteoriteData">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Id</th>
+        <th>Name Type</th>
+        <th>Rec Class</th>
+        <th>Mass(g)</th>
+        <th>Fall</th>
+        <th>Year</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
