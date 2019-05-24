@@ -27,45 +27,14 @@
   <!-- Javascript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script src="index.js" type="text/javascript"></script>
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
-
-  <!-- JS for page
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript">
-    fetch('https://data.nasa.gov/resource/gh4g-9sfh.json')
-    .then(res => res.json())//response type
-    .then(json => {
-      //render DataTable
-      $(document).ready( function () {
-        $('#meteoriteData').DataTable();
-      });
-      //fill out table w data
-      var table = document.getElementById('meteoriteData')
-
-      json.forEach(function(object){
-        var tr = document.createElement('tr');
-        tr.innerHTML = '<td>' + object.name + '</td>' +
-        '<td>' + object.id + '</td>' +
-        '<td>' + object.nametype + '</td>' +
-        '<td>' + object.recclass + '</td>' +
-        '<td>' + object.mass + '</td>' +
-        '<td>' + object.fall + '</td>' +
-        '<td>' + object.year + '</td>' +
-        '<td>' + object.geolocation.latitude + '</td>' +
-        '<td>' + object.geolocation.longitude + '</td>';
-        $('table tbody').append(tr);
-      });
-    });
-  </script>
-
 </head>
-<body>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<body>
 
   <table class="display" id="meteoriteData">
     <thead>
@@ -85,7 +54,5 @@
     </tbody>
   </table>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
